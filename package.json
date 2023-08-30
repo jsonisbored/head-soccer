@@ -1,21 +1,26 @@
 {
-  "name": "typescript-ka-example",
-  "version": "1.0.0",
-  "description": "",
-  "main": "main.js",
-  "type": "module",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "esbuild src/main.ts --outfile=app/main.js --bundle --watch --format=esm",
-    "build": "esbuild src/main.ts --outfile=app/main.js --bundle --format=esm"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jsonisbored/typescript-ka-example.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "esbuild": "^0.17.5"
-  }
+    "name": "typescript-ka-example",
+    "version": "1.0.0",
+    "description": "",
+    "main": "main.js",
+    "type": "module",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "watch": "esbuild dist/main.js --outfile=out.js --bundle --watch --format=esm",
+        "build": "babel src -d dist --extensions \".ts\" && esbuild dist/main.js --outfile=out.js --bundle --format=esm"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/jsonisbored/typescript-ka-example.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@babel/cli": "^7.22.10",
+        "@babel/core": "^7.22.11",
+        "@babel/preset-env": "^7.22.14",
+        "@babel/preset-typescript": "^7.22.11",
+        "esbuild": "^0.17.5",
+        "ts-macros": "^2.4.0"
+    }
 }
