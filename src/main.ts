@@ -1,14 +1,64 @@
-import { foo } from "./foo";
+import { a } from "./physics";
+println(a);
 
-println(foo());
+function number(): number[] {
+    return [];
+}
+function boolean(): boolean[] {
+    return [];
+}
 
+interface Entities {
+    [k: string]: Entities | unknown[];
+};
+type SystemParam = {
+    resources: typeof resources,
+    entities: Record<string, unknown>,
+};
+// type System = (params: SystemParam) => unknown;
 
-fill(255, 255, 0);
-ellipse(200, 200, 200, 200);
-noFill();
-stroke(0, 0, 0);
-strokeWeight(2);
-arc(200, 200, 150, 100, 0, PI);
-fill(0, 0, 0);
-ellipse(250, 200, 10, 10);
-ellipse(153, 200, 10, 10);
+const resources = {
+    delta: 0,
+};
+
+const entities = {
+    player: {
+        speed: number(),
+        jump: number(),
+        power: number(),
+        jumping: boolean(),
+        jumps: number(),
+        max_jumps: number(),
+        team: number(),
+    },
+    ball: {
+        bounce: number(),
+    },
+    pos: {
+        x: number(),
+        y: number(),
+    },
+    vel: {
+        x: number(),
+        y: number(),
+    },
+} satisfies Entities;
+
+function update_position({}) {}
+function log_ping({ resources: {delta: ping} }: SystemParam) {
+    println(ping);
+}
+
+let last_frame = millis();
+function draw() {
+    resources.delta = millis()-last_frame;
+    last_frame = millis();
+
+    const data: SystemParam = {
+        entities,
+        resources,
+    };
+
+    log_ping(data);
+}
+draw();
