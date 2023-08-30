@@ -1,4 +1,3 @@
-function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure " + obj); }
 import { a } from "./physics";
 println(a);
 function number() {
@@ -36,7 +35,13 @@ var entities = {
   }
 };
 function update_position(_ref) {
-  _objectDestructuringEmpty(_ref);
+  var _ref$entities = _ref.entities,
+    pos = _ref$entities.pos,
+    vel = _ref$entities.vel;
+  for (var i = 0; i < pos.x.length; i++) {
+    pos.x[i] += vel.x[i];
+    pos.y[i] += vel.y[i];
+  }
 }
 function log_ping(_ref2) {
   var ping = _ref2.resources.delta;
@@ -51,5 +56,6 @@ function draw() {
     resources: resources
   };
   log_ping(data);
+  update_position(data);
 }
 draw();

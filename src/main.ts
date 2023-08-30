@@ -13,7 +13,7 @@ interface Entities {
 };
 type SystemParam = {
     resources: typeof resources,
-    entities: Record<string, unknown>,
+    entities: typeof entities,
 };
 // type System = (params: SystemParam) => unknown;
 
@@ -44,7 +44,12 @@ const entities = {
     },
 } satisfies Entities;
 
-function update_position({}) {}
+function update_position({ entities: {pos, vel} }: SystemParam) {
+    for (let i = 0; i < pos.x.length; i ++) {
+        pos.x[i] += vel.x[i];
+        pos.y[i] += vel.y[i];
+    }
+}
 function log_ping({ resources: {delta: ping} }: SystemParam) {
     println(ping);
 }
@@ -60,5 +65,6 @@ function draw() {
     };
 
     log_ping(data);
+    update_position(data);
 }
 draw();

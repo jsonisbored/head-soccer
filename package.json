@@ -6,8 +6,9 @@
     "type": "module",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "watch": "esbuild dist/main.js --outfile=out.js --bundle --watch --format=esm",
-        "build": "babel src -d dist --extensions \".ts\" && esbuild dist/main.js --outfile=out.js --bundle --format=esm"
+        "esbuild": "esbuild dist/main.js --outfile=out.js --bundle --watch --format=esm --target=es5",
+        "babel": "babel src -d dist --extensions \".ts\" --watch",
+        "build": "babel src -d dist --extensions \".ts\" && esbuild dist/main.js --outfile=out.js --bundle --format=esm --target=es5"
     },
     "repository": {
         "type": "git",

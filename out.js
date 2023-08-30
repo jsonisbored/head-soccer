@@ -34,6 +34,13 @@ var entities = {
     y: number()
   }
 };
+function update_position(_ref) {
+  var _ref$entities = _ref.entities, pos = _ref$entities.pos, vel = _ref$entities.vel;
+  for (var i = 0; i < pos.x.length; i++) {
+    pos.x[i] += vel.x[i];
+    pos.y[i] += vel.y[i];
+  }
+}
 function log_ping(_ref2) {
   var ping = _ref2.resources.delta;
   println(ping);
@@ -43,9 +50,10 @@ function draw() {
   resources.delta = millis() - last_frame;
   last_frame = millis();
   var data = {
-    entities,
-    resources
+    entities: entities,
+    resources: resources
   };
   log_ping(data);
+  update_position(data);
 }
 draw();
