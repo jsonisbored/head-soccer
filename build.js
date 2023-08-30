@@ -1,5 +1,4 @@
 import * as esbuild from "esbuild";
-import fs from "fs";
 
 
 const outFile = "./app/main.js";
